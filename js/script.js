@@ -101,25 +101,39 @@ function askSpecial() {
 
 askSpecial();
 
-if (lowercaseOption) {
-  passwordCharacters += lowercaseCharacter;
+//Store inputs of criteria
+function generatePassword() {
+
+  if (lowercaseOption && uppercaseOption && numberOption && specialOption) {
+    passwordCharacters += lowercaseCharacter + uppercaseCharacter + numberCharacter + specialCharacter;
+  } else if (lowercaseOption && uppercaseOption && numberOption) {
+    passwordCharacters += lowercaseCharacter + uppercaseCharacter + numberCharacter;
+  } else if (lowercaseOption && numberOption && specialOption) {
+    passwordCharacters += lowercaseCharacter + numberCharacter + specialCharacter;
+  } else if (lowercaseOption && uppercaseOption) {
+    passwordCharacters += lowercaseCharacter + uppercaseCharacter;
+  } else if (lowercaseOption && numberOption) {
+    passwordCharacters += lowercaseCharacter + numberCharacter;
+  } else if (lowercaseOption && specialOption) {
+    passwordCharacters += lowercaseCharacter + specialCharacter;
+  } else if (uppercaseOption && numberOption && specialOption) {
+    passwordCharacters += uppercaseCharacter + numberCharacter + specialCharacter;
+  } else if (uppercaseOption && numberOption) {
+    passwordCharacters += uppercaseCharacter + numberCharacter;
+  } else if (uppercaseOption && specialOption) {
+    passwordCharacters += uppercaseCharacter + specialCharacter;
+  } else if (numberOption && specialOption) {
+    passwordCharacters += numberCharacter + specialCharacter;
+  } else {
+    window.prompt("Please select at least one of the criteria. (Password with AT LEAST ONE of lowercase character, uppercase character, number, or soecial character.))");
+    askLowercase();
+  }
+
+  for (var i = 0; i < passwordLength; i++) {
+    password = passwordCharacters[Math.floor[Math.random() * passwordCharacters.length]];
+  }  
 }
 
-if (uppercaseOption) {
-  passwordCharacters += uppercaseCharacter;
-}
-
-if (numberOption) {
-  passwordCharacters += numberCharacter;
-}
-
-if (specialOption) {
-  passwordCharacters += specialCharacter;
-}
-
-for (var i = 0; i < passwordLength; i++) {
-  password = passwordCharacters[Math.floor[Math.random() * passwordCharacters.length]];
-}
 
 // Write password to the #password input
 function writePassword() {
