@@ -85,7 +85,8 @@ function askSpecial() {
 }
 
 
-//Store inputs of criteria
+//Generates criteria for the password
+
 function generatePassword() {
 
   askLength();
