@@ -10,7 +10,6 @@ var uppercaseCharacter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
 var numberCharacter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharacter = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~",];
 var passwordCharacters = [];
-var passwordLength;
 
 // Prompt for password length
 function askLength() {
@@ -48,25 +47,16 @@ function askLowercase() {
 
   if (lowercaseOption) {
     passwordCharacters = passwordCharacters.concat(lowercaseCharacter);
-    console.log(passwordCharacters);
-    console.log(passwordLength);
-    
+
     for (var i = 0; i < passwordLength + 1; i++) {
 
-      var lowerChar = lowercaseCharacter[Math.floor(Math.random() * passwordLength)];
+      var lowerChar = lowercaseCharacter[Math.floor((Math.random() * passwordLength) + 1)];
       console.log(lowerChar);
 
     }
   }
-
-  // else {
-  //   lowercaseOption = false;
-  //   return lowercaseOption;
-  // }
-
 }
 
-//askLowercase();
 
 //Confirm uppercase letters
 function askUppercase() {
@@ -74,15 +64,14 @@ function askUppercase() {
   var uppercaseOption = window.confirm("Password with uppercase characters?");
 
   if (uppercaseOption) {
-    uppercaseOption = true;
-    return uppercaseOption;
-  } else {
-    uppercaseOption = false;
-    return uppercaseOption;
+    passwordCharacters = passwordCharacters.concat(uppercaseCharacter);
+
+    for (var i = 0; i < passwordLength + 1; i++) {
+      var upperChar = uppercaseCharacter[Math.floor((Math.random() * passwordLength) + 1)];
+      console.log(upperChar);
+    }
   }
 }
-
-//askUppercase();
 
 //Confirm password with numbers
 function askNumber() {
@@ -90,15 +79,14 @@ function askNumber() {
   var numberOption = window.confirm("Password with numbers?");
 
   if (numberOption) {
-    numberOption = true;
-    return numberOption;
-  } else {
-    numberOption = false;
-    return numberOption;
+    passwordCharacters = passwordCharacters.concat(numberCharacter);
+
+    for (var i = 0; i < passwordLength + 1; i++) {
+      var numberChar = numberCharacter[Math.floor((Math.random() * passwordLength) + 1)];
+      console.log(numberChar);
+    }
   }
 }
-
-//askNumber();
 
 //Confirm special characters
 function askSpecial() {
@@ -106,64 +94,26 @@ function askSpecial() {
   var specialOption = window.confirm("Password with special characters?");
 
   if (specialOption) {
-    specialOption = true;
-    return specialOption;
-  } else {
-    specialOption = false;
-    return specialOption;
+    passwordCharacters = passwordCharacters.concat(specialCharacter);
+    for (var i = 0; i < passwordLength + 1; i++){
+      var specialChar = specialCharacter[Math.floor((Math.random() * passwordLength) + 1)];
+      console.log(specialChar);
+    }
   }
 }
 
-//askSpecial();
 
 //Store inputs of criteria
 function generatePassword() {
   askLength();
   askLowercase();
   console.log(passwordCharacters);
-//   console.log(passwordLength);
-//   var lowercaseOption1 = askLowercase();
-//   console.log(passwordCharacters);
-//   console.log(lowercaseOption1.lowercaseOption);
-//   var uppercaseOption1 = askUppercase();
-//   console.log(uppercaseOption1.uppercaseOption);
-//   var numberOption1 = askNumber();
-//   console.log(numberOption1.numberOption);
-//   var specialOption1 = askSpecial();
-//   console.log(specialOption1.specialOption);
-
-//   var password = "";
-
-//   if (lowercaseOption1.lowercaseOption && uppercaseOption1.uppercaseOption && numberOption1.numberOption && specialOption1.specialOption) {
-//     passwordCharacters.push(lowercaseCharacter, uppercaseCharacter, numberCharacter, specialCharacter);
-//   } else if (lowercaseOption1.lowercaseOption && uppercaseOption1.uppercaseOption && numberOption1.numberOption) {
-//     passwordCharacters += lowercaseCharacter + uppercaseCharacter + numberCharacter;
-//   } else if (lowercaseOption1.lowercaseOption && numberOption1.numberOption && specialOption) {
-//     passwordCharacters += lowercaseCharacter + numberCharacter + specialCharacter;
-//   } else if (lowercaseOption1.lowercaseOption && uppercaseOption1.uppercaseOption) {
-//     passwordCharacters += lowercaseCharacter + uppercaseCharacter;
-//   } else if (lowercaseOption1.lowercaseOption && numberOption1.numberOption) {
-//     passwordCharacters += lowercaseCharacter + numberCharacter;
-//   } else if (lowercaseOption1.lowercaseOption && specialOption) {
-//     passwordCharacters += lowercaseCharacter + specialCharacter;
-//   } else if (uppercaseOption1.uppercaseOption && numberOption1.numberOption && specialOption) {
-//     passwordCharacters += uppercaseCharacter + numberCharacter + specialCharacter;
-//   } else if (uppercaseOption1.uppercaseOption && numberOption1.numberOption) {
-//     passwordCharacters += uppercaseCharacter + numberCharacter;
-//   } else if (uppercaseOption1.uppercaseOption && specialOption) {
-//     passwordCharacters += uppercaseCharacter + specialCharacter;
-//   } else if (numberOption1.numberOption && specialOption) {
-//     passwordCharacters += numberCharacter + specialCharacter;
-//   } else {
-//     window.prompt("Please select at least one of the criteria. (Password with AT LEAST ONE of lowercase character, uppercase character, number, or soecial character.)");
-//     //askLowercase();
-//   }
-//   console.log(passwordCharacters);
-//   for (var i = 0; i < passwordLength; i++) {
-//     password = passwordCharacters[Math.floor[Math.random() * passwordLength]];
-//   }
-//   return password;
-
+  askUppercase();
+  console.log(passwordCharacters);
+  askNumber();
+  console.log(passwordCharacters);
+  askSpecial();
+  console.log(passwordCharacters);
 }
 
 
@@ -177,5 +127,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
