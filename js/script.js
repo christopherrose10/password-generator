@@ -96,16 +96,22 @@ function generatePassword() {
   askNumber();
   askSpecial();
 
-  var passwordCharacters = [];
+  //var passwordCharacters = [];
   var password = "";
 
   for (var i = 0; i < passwordLength; i++) {
 
-    var passwordRandom = Math.floor[Math.random() * passwordCharacters.length];
+    console.log(passwordCharacters);
 
-    var password = password + passwordCharacters[passwordRandom];
+    var passwordRandom = Math.floor(Math.random() * passwordCharacters.length);
+
+    console.log(passwordRandom);
+
+    password = password + passwordCharacters[passwordRandom];
 
   }
+
+  console.log(password);
 
   return password;
 
