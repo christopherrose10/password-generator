@@ -3,6 +3,8 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -48,8 +50,8 @@ function askLowercase() {
 
   var lowercaseOption = window.confirm("Password with lowercase characters?");
 
-  if (lowercaseOption === true) {
-    passwordCharacters = passwordCharacters.concat(lowercaseCharacter);
+  if (lowercaseOption) {
+    passwordCharacters += lowercaseCharacter;
   }
 }
 
@@ -59,8 +61,8 @@ function askUppercase() {
 
   var uppercaseOption = window.confirm("Password with uppercase characters?");
 
-  if (uppercaseOption === true) {
-    passwordCharacters = passwordCharacters.concat(uppercaseCharacter);
+  if (uppercaseOption) {
+    passwordCharacters += uppercaseCharacter;
   }
 }
 
@@ -69,8 +71,8 @@ function askNumber() {
 
   var numberOption = window.confirm("Password with numbers?");
 
-  if (numberOption === true) {
-    passwordCharacters = passwordCharacters.concat(numberCharacter);
+  if (numberOption) {
+    passwordCharacters += numberCharacter;
   }
 }
 
@@ -79,25 +81,39 @@ function askSpecial() {
 
   var specialOption = window.confirm("Password with special characters?");
 
-  if (specialOption === true) {
-    passwordCharacters = passwordCharacters.concat(specialCharacter);
+  if (specialOption) {
+    passwordCharacters += specialCharacter;
   }
 }
-
 
 //Generates criteria for the password
 
 function generatePassword() {
+  var password = "";
+
 
   askLength();
   console.log(passwordLength);
-  askLowercase();
-  askUppercase();
-  askNumber();
-  askSpecial();
+  // askLowercase();
+  // askUppercase();
+  // askNumber();
+  // askSpecial();
+  var checkLowercase = askLowercase();
+  var checkUppercase = askUppercase();
+  var checkNumber = askNumber();
+  var checkSpecial = askSpecial();
 
-  //var passwordCharacters = [];
-  var password = "";
+
+  if (!checkLowercase && !checkUppercase && !checkNumber && !checkSpecial) {
+
+
+    alert("Password must contain atleast one of the following: Lowercase, Uppercase, Number or Special Character.");
+
+    // generatePassword();
+
+
+  }
+
 
   for (var i = 0; i < passwordLength; i++) {
 
@@ -112,6 +128,7 @@ function generatePassword() {
   }
 
   console.log(password);
+
 
   return password;
 
