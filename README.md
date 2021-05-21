@@ -9,7 +9,7 @@ A website that generates random passwords based on criteria selected through pro
 * JS
 
 ## Website
-https://lernantino.github.io/run-buddy/
+https://christopherrose10.github.io/password-generator/
 
 ## Contribution
 Made with by [Chris Rose]
