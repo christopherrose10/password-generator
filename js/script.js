@@ -14,7 +14,6 @@ var passwordCharacters = [];
 // Write password to the #password input
 function writePassword() {
 
-  passwordCharacters.length = 0;
   console.clear();
 
   var password = generatePassword();
@@ -23,71 +22,62 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Prompt for password length
-function askLength() {
-
-  passwordLength = window.prompt("Password length (Must be between 8-128 characters):");
-
-  if (passwordLength < 8) {
-    window.alert("Password must be more than 7 characters.");
-    askLength();
-
-  } else if (passwordLength > 128) {
-    window.alert("Password must be less than 129 characters.");
-    askLength();
-
-  } else if (isNaN(passwordLength)) {
-    window.alert("Please insert a numeric value.");
-    askLength();
-
-  } else {
-    return passwordLength;
-  }
-
-}
-
 //Generate password command
 function generatePassword() {
 
-  askLength();
-  console.log(passwordLength);
+  var password = "";
+  var passwordCharacters = [];
+
+  var passwordLength = window.prompt("Please choose a password length (Must be between 8-128 characters):"); 
+
+  if (passwordLength < 8 || passwordLength > 128) {
+    window.alert("Password must be at least 8 characters and  less than 128 characters.");
+    return generatePassword();
+  } 
+  
+  if (isNaN(passwordLength)) {
+    window.alert("Please insert a numeric value.");
+    return generatePassword();
+  } 
+
   var lowercaseOption = window.confirm("Password with lowercase characters?");
   var uppercaseOption = window.confirm("Password with uppercase characters?");
   var numberOption = window.confirm("Password with numbers?");
   var specialOption = window.confirm("Password with special characters?");
 
   if (lowercaseOption) {
-    passwordCharacters += lowercaseCharacter;
+    passwordCharacters = passwordCharacters.concat(lowercaseCharacter);
   }
 
   if (uppercaseOption) {
-    passwordCharacters += uppercaseCharacter;
+    passwordCharacters = passwordCharacters.concat(uppercaseCharacter);
   }
 
   if (numberOption) {
-    passwordCharacters += numberCharacter;
+    passwordCharacters = passwordCharacters.concat(numberCharacter);
   }
 
   if (specialOption) {
-    passwordCharacters += specialCharacter;
+    passwordCharacters = passwordCharacters.concat(specialCharacter);
   }
 
-  if (!lowercaseOption && !uppercaseOption && !numberOption && !specialOption) {
+  if (passwordCharacters.length === 0) {
 
     alert("Password must contain atleast one of the following: Lowercase, Uppercase, Number or Special Character.");
 
-    return password = "Please press Generate Password";
+    return password = "Please click: Generate Password";
   }
 
+  else {
 
-  for (var i = 0; i < passwordLength; i++) {
-    console.log(passwordCharacters);
 
-    var passwordRandom = Math.floor(Math.random() * passwordCharacters.length);
-    console.log(passwordRandom);
+    for (var i = 0; i < passwordLength; i++) {
 
-    password = password + passwordCharacters[passwordRandom];
+      var passwordRandom = Math.floor(Math.random() * passwordCharacters.length);
 
+      password = password + passwordCharacters[passwordRandom];
+
+    }
   }
 
   console.log(password);
